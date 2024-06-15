@@ -1,7 +1,10 @@
-import React from "react";
+import React,{useEffect,useState,useContext} from "react";
 
-const index = () => {
-  return <div>index</div>;
+import { EtherBuzzContext } from "../Context/EtherBuzzContext";
+
+const EtherBuzz = () => {
+  const {} = useContext(EtherBuzzContext)
+  return <div>Hey</div>;
 };
 
-export default index;
+export default EtherBuzz;

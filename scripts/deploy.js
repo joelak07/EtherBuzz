@@ -1,15 +1,28 @@
 const hre = require("hardhat");
 
 async function main() {
-  const ChatApp = await hre.ethers.getContractFactory("ChatApp");
-  const chatApp = await ChatApp.deploy();
+  // Compile the contract if needed
+  await hre.run('compile');
 
-  await chatApp.deployed();
+  // Deploy the contract
+  const EtherBuzz = await hre.ethers.getContractFactory("EtherBuzz");
+  const etherbuzz = await EtherBuzz.deploy();
 
-  console.log(` Contract Address: ${chatApp.address}`);
+  // Wait for the contract to be deployed
+  await etherbuzz.deployed();
+
+  // Log the contract address
+  console.log(`Contract deployed to address: ${etherbuzz.address}`);
+
+  // Check the contract code
+  const provider = hre.ethers.provider;
+  const code = await provider.getCode(etherbuzz.address);
+  console.log(`Contract code at address: ${code}`);
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error("Error deploying contract:", error);
+    process.exit(1);
+  });
