@@ -15,6 +15,7 @@ export const EtherBuzzProvider = ({ children }) => {
             const contract=await connectingWithContract();
             const connectAccount=await ConnectWallet();
             setAccount(connectAccount);
+            console.log(connectAccount);
         }catch(error){
             console.log("9")
         }
@@ -26,11 +27,8 @@ export const EtherBuzzProvider = ({ children }) => {
     const get = async () =>{
         try{
             const contract=await connectingWithContract();
-            console.log("11")
             const data=await contract.get();
-            console.log("12")
             setNumber(data.toNumber());
-            console.log("13")
             console.log(data.toNumber());
         }catch(error){
             console.log("8" + error)
@@ -48,7 +46,7 @@ export const EtherBuzzProvider = ({ children }) => {
     }
 
     return(
-        <EtherBuzzContext.Provider value={{get,set,account,number,userName}}>
+        <EtherBuzzContext.Provider value={{get,set,account,number,userName, CheckIfWalletConnected}}>
             {children}
         </EtherBuzzContext.Provider>
     )

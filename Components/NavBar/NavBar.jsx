@@ -1,37 +1,35 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { EtherBuzzContext } from "../../Context/EtherBuzzContext";
+import styles from "./NavBar.module.css";
 
 const NavBar = () => {
-  const { set, get, number } = useContext(EtherBuzzContext);
-  const [inputValue, setInputValue] = useState("");
+  const { account, CheckIfWalletConnected } = useContext(EtherBuzzContext);
+  const [walletAddress, setWalletAddress] = useState("");
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  };
+  useEffect(() => {
+    const checkWalletConnection = async () => {
+      const connected = await CheckIfWalletConnected();
+      if (connected) {
+        setWalletAddress(account);
+      }
+    };
 
-  const handleSet = async () => {
-    const value = parseInt(inputValue, 10);
-    if (!isNaN(value)) {
-      await set(value);
-    }
-  };
-
-  const handleGet = async () => {
-    await get();
-  };
+    checkWalletConnection();
+  }, [CheckIfWalletConnected, account]);
 
   return (
-    <div>
-      <div>NavBar</div>
-      <input
-        type="number"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder="Enter a number"
-      />
-      <button onClick={handleSet}>Set</button>
-      <button onClick={handleGet}>Get</button>
-      <div>Stored Number: {number}</div>
+    <div className={styles.navbarmain}>
+      <div className={styles.navbarleft}>
+        <div className={styles.titlebox}>
+          <h1 className={styles.title}>EtherBuzz</h1>
+        </div>
+      </div>
+      <div className={styles.navbarright}>
+        <button className={styles.navbarbutton}>Post</button>
+        <button className={styles.navbarbutton}>
+          {walletAddress ? walletAddress : "Connect Wallet"}
+        </button>
+      </div>
     </div>
   );
 };

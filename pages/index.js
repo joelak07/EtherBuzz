@@ -4,7 +4,7 @@ import { EtherBuzzContext } from "../Context/EtherBuzzContext";
 
 const EtherBuzz = () => {
   const {} = useContext(EtherBuzzContext)
-  return <div>Hey</div>;
+  return <div>{}</div>;
 };
 
 export default EtherBuzz;

@@ -1,0 +1,44 @@
+.titlebox {
+    color:#1A2130;
+    font-family: 'poppins', sans-serif;
+}
+
+.navbarmain{
+    background-color: #ecece9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.title{
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #1A2130;
+    margin: 0;
+    padding: 20px;
+}
+
+.navbarbutton {
+    background-color: #1A2130;
+    color: white;
+    font-size: 1.3rem;
+    border: none;
+    margin-right: 20px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbarbutton:hover {
+    background-color: white;
+    border: 3px solid #1A2130;
+    color: #1A2130;
+  }
+
+  .navbarright{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
