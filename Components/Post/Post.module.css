@@ -55,8 +55,11 @@
 }
 
 .count{
-    color: green;
+    color: white;
     font-family: 'poppins', sans-serif;
     font-size: 1.3rem;
     margin-right: 10px;
+    background-color: green;
+    border-radius: 30px;
+    padding: 8px 16px;
 }

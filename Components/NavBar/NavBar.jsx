@@ -21,7 +21,7 @@ const NavBar = () => {
     <div className={styles.navbarmain}>
       <div className={styles.navbarleft}>
         <div className={styles.titlebox}>
-          <h1 className={styles.title}>EtherBuzz</h1>
+          <h1 className={styles.title}>Ether<span style={{color:"goldenrod"}}>Buzz</span></h1>
         </div>
       </div>
       <div className={styles.navbarright}>

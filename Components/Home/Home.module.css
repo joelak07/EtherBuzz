@@ -42,3 +42,21 @@
     font-family: 'poppins', sans-serif;
 }
 
+.newsImage{
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;    
+}
+
+.newslist{
+    max-height: 400px;
+    overflow-y: scroll;
+    font-family: 'Popins', sans-serif;
+    color: white;
+}
+
+.newsLink{
+    color: goldenrod;
+    font-family: 'poppins', sans-serif;
+    text-decoration: none;
+}

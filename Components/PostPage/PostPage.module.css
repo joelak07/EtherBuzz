@@ -1,0 +1,86 @@
+.titpost{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-family: "Poppins", sans-serif;
+    color: goldenrod;
+    padding: 0px 30px;
+}
+
+.mainpostpage{
+    padding: 0px 50px;
+}
+
+.boxpostpage{
+    width: auto;
+    margin: 5px 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #1A2130;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  .title:focus {
+    border-color: goldenrod;
+    box-shadow: 0 0 5px goldenrod;
+    outline: none;
+  }
+
+  .author{
+    font-size: 1.4rem;
+    font-family: "Poppins", sans-serif;
+    color: goldenrod;
+    margin: 10px 0px;
+  }
+  
+  .content{
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: "Poppins", sans-serif;
+    background-color: #f8f8f8;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    height: auto;
+  }
+
+  .content:focus {
+    border-color: goldenrod;
+    box-shadow: 0 0 5px goldenrod;
+    outline: none;
+  }
+
+  .postbutton{
+    font-size: 1.4rem;
+    font-family: "Poppins", sans-serif;
+    color: #1A2130;
+    background-color: goldenrod;
+    margin: 10px 0px;
+    border-radius: 10px;
+    padding: 12px 24px;
+    transition: smooth 0.3s ease-in-out;   
+    cursor: pointer;
+    align-self: flex-end;
+
+  }
+
+  .postbutton:hover{
+    transform: scale(1.1);
+  }

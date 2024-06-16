@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import 'react'
 import { EtherBuzzProvider } from "../Context/EtherBuzzContext";
-import {NavBar,Create,Home} from "../Components/index";
+import {NavBar,Create,Home, PostPage} from "../Components/index";
 
 
 export default function App({ Component, pageProps }) {
@@ -9,7 +9,9 @@ export default function App({ Component, pageProps }) {
   <div>
     <EtherBuzzProvider>
       <NavBar />
-      <Home/>
+      {/* <Home/>
+      <Create /> */}
+      <PostPage />
       <Component {...pageProps} />
     </EtherBuzzProvider>
   </div>)
