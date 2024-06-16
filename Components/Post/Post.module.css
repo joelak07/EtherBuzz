@@ -1,0 +1,62 @@
+.PostContent{
+    font-family: 'poiret one', cursive;
+    color: white;
+}
+
+.postmain{
+    padding: 10px 30px;
+    border-radius: 15px;
+    background-color: #1A2130;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.posttitle{
+    font-family: "poppins", sans-serif;
+    color: goldenrod;
+}
+
+.pt1{
+    margin: 0;
+    padding: 0;
+    font-size: 1.75rem;
+}
+
+.pt2{
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+}
+
+.votes{
+    display: flex;
+    align-items: center;    
+    font-family: 'poppins', sans-serif;
+    color: white;
+    width: 100%;
+
+}
+
+.upvote{
+    color: goldenrod;
+    font-family: 'poppins', sans-serif;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 30px;
+    margin-right: 5px;
+}
+
+.downvote{
+    color: red;
+    font-family: 'poppins', sans-serif;
+    padding: 8px;
+    font-size: 1rem;
+    border-radius: 30px;
+}
+
+.count{
+    color: green;
+    font-family: 'poppins', sans-serif;
+    font-size: 1.3rem;
+    margin-right: 10px;
+}

@@ -1,0 +1,44 @@
+.homemain{
+    /* font-family: 'poiret one', cursive; */
+    height: 100%;
+}
+
+.hometitle{
+    font-family: "poppins", sans-serif;
+    font-size: 2rem;
+    padding: 0px 30px;
+    color: goldenrod;
+}
+
+.homebox{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 30px;
+    height: 100%;
+}
+
+.posts{
+    max-height: 500px;
+    width: 60%;
+    overflow-y: scroll;
+}
+
+.News{
+    width: 36%;
+    height: 500px;
+    background-color: #1A2130;
+    border-radius: 15px;
+    padding: 0px 30px;
+}
+
+.newsbut{
+    color: goldenrod;
+    font-family: 'poppins', sans-serif;
+}
+
+.newsart{
+    color: white;
+    font-family: 'poppins', sans-serif;
+}
+

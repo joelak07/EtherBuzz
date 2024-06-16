@@ -24,29 +24,38 @@ export const EtherBuzzProvider = ({ children }) => {
         fetchData();
     },[])
 
-    const get = async () =>{
-        try{
-            const contract=await connectingWithContract();
-            const data=await contract.get();
-            setNumber(data.toNumber());
-            console.log(data.toNumber());
-        }catch(error){
-            console.log("8" + error)
-        }
-    }
+    // const get = async () =>{
+    //     try{
+    //         const contract=await connectingWithContract();
+    //         const data=await contract.get();
+    //         setNumber(data.toNumber());
+    //         console.log(data.toNumber());
+    //     }catch(error){
+    //         console.log("8" + error)
+    //     }
+    // }
 
-    const set = async (value) =>{
+    // const set = async (value) =>{
+    //     try{
+    //         const contract=await connectingWithContract();
+    //         await contract.set(value);
+    //         get();
+    //     }catch(error){
+    //         console.log("10")
+    //     }
+    // }
+
+    const createuser=async (username,email) =>{
         try{
             const contract=await connectingWithContract();
-            await contract.set(value);
-            get();
+            await contract.createUser(username,email);
         }catch(error){
-            console.log("10")
+            console.log(error);
         }
     }
 
     return(
-        <EtherBuzzContext.Provider value={{get,set,account,number,userName, CheckIfWalletConnected}}>
+        <EtherBuzzContext.Provider value={{createuser,account,number,userName, CheckIfWalletConnected}}>
             {children}
         </EtherBuzzContext.Provider>
     )
