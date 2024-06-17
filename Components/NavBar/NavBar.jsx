@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { EtherBuzzContext } from "../../Context/EtherBuzzContext";
 import styles from "./NavBar.module.css";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const NavBar = () => {
   const { account, CheckIfWalletConnected } = useContext(EtherBuzzContext);
   const [walletAddress, setWalletAddress] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
     const checkWalletConnection = async () => {
@@ -17,15 +20,23 @@ const NavBar = () => {
     checkWalletConnection();
   }, [CheckIfWalletConnected, account]);
 
+  const handlePostClick = () => {
+    router.push('/postpage');
+  };
+
   return (
     <div className={styles.navbarmain}>
       <div className={styles.navbarleft}>
         <div className={styles.titlebox}>
-          <h1 className={styles.title}>Ether<span style={{color:"goldenrod"}}>Buzz</span></h1>
+          <Link href="/">
+            <a className={styles.title}>
+              Ether<span style={{ color: "goldenrod" }}>Buzz</span>
+            </a>
+          </Link>
         </div>
       </div>
       <div className={styles.navbarright}>
-        <button className={styles.navbarbutton}>Post</button>
+        <button className={styles.navbarbutton} onClick={handlePostClick}>Post</button>
         <button className={styles.navbarbutton}>
           {walletAddress ? walletAddress : "Connect Wallet"}
         </button>

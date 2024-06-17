@@ -1,19 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons';
 import Style from './Post.module.css';
+import { EtherBuzzContext } from '../../Context/EtherBuzzContext';
+import { ethers } from 'ethers';
 
-const Post = () => {
+const Post = ({ post }) => {
+  const [dates, setDates] = useState(null);
+  const { fetchUserName } = useContext(EtherBuzzContext);
+  const [userName, setUserName] = useState("");
+  const [showUserName, setShowUserName] = useState(true);
+
+  useEffect(() => {
+    const timestampInSeconds = ethers.BigNumber.from(post.timestamp).toNumber();
+    const date = new Date(timestampInSeconds * 1000);
+    setDates(date);
+  }, [post]);
+
+  useEffect(() => {
+    const fetchUserNameAsync = async () => {
+      try {
+        const fetchedUserName = await fetchUserName(post.poster);
+        setUserName(fetchedUserName || '');
+      } catch (error) {
+        console.error('Error fetching username:', error);
+      }
+    };
+
+    fetchUserNameAsync();
+  }, [fetchUserName, post]);
+
+  const toggleUserName = () => {
+    setShowUserName((prev) => !prev);
+  };
+
   return (
     <div className={Style.postmain}>
       <div className={Style.posttitle}>
-        <h2 className={Style.pt1}>Post Title</h2>
-        <h3 className={Style.pt2}>Joel Abraham Koshy</h3>
+        <div className={Style.dattit}>
+          <h2 className={Style.pt1}>{post.title}</h2>
+          <p>{dates && dates.toLocaleString('en-US', { timeZone: 'IST', hour12: true })}</p>
+        </div>
+
+        <h3 className={Style.pt2} onClick={toggleUserName}>
+          {showUserName ? userName || 'Anonymous' : post.poster}
+        </h3>
       </div>
       <div className={Style.PostContent}>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium natus quod distinctio error dolor, illo provident vel ea repellat magnam tempore ratione molestiae nostrum totam facere earum. Optio deserunt illum odit vitae ratione eos nobis excepturi perspiciatis expedita laborum omnis quasi rem voluptate ipsa asperiores, repellendus, in fugiat earum aut distinctio quisquam. Labore eum officiis amet ipsam temporibus, expedita soluta sit optio reiciendis omnis mollitia voluptas quod eveniet iure animi aut perferendis voluptatibus quidem id error neque vel obcaecati! Minus saepe aperiam rerum error ut ea sint, quidem sequi beatae iusto esse reiciendis! Eos, quo nostrum pariatur velit commodi suscipit!</p>
-      </div><div className={Style.votes}>
-        <p className={Style.count}>140</p>
+        <p>{post.content}</p>
+      </div>
+      <div className={Style.votes}>
+        <p className={Style.count}>{post.votes || 0}</p>
         <button className={Style.upvote}>
           <FontAwesomeIcon icon={faThumbsUp} /> Upvote
         </button>

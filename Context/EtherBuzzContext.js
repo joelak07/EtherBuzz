@@ -12,6 +12,16 @@ export const EtherBuzzProvider = ({ children }) => {
 
     const router = useRouter();
 
+    const fetchUserName = async(acc) =>{
+        try{
+            const contract = await connectingWithContract();
+            const user = await contract.users(acc);
+            return user.username;
+        }catch(error){
+            console.log("Error in fetchUserName:", error);
+        }
+    }
+
     const fetchData = async () => {
         try {
             const connectAccount = await ConnectWallet();
@@ -38,7 +48,7 @@ export const EtherBuzzProvider = ({ children }) => {
         try {
             const contract = await connectingWithContract();
             const posts = await contract.getAllPosts();
-            console.log("Posts:", posts);
+            return posts;
         } catch (error) {
             console.log("Error in fetchPosts:", error);
         }
@@ -76,7 +86,7 @@ export const EtherBuzzProvider = ({ children }) => {
     };
 
     return (
-        <EtherBuzzContext.Provider value={{ fetchPosts, submitPost, createUser, account, number, userName, name, CheckIfWalletConnected }}>
+        <EtherBuzzContext.Provider value={{ fetchUserName,fetchPosts, submitPost, createUser, account, number, userName, name, CheckIfWalletConnected }}>
             {children}
         </EtherBuzzContext.Provider>
     );
