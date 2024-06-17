@@ -5,7 +5,7 @@ import { EtherBuzzContext } from '../../Context/EtherBuzzContext';
 const PostPage = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const { account, CheckIfWalletConnected, name } = useContext(EtherBuzzContext);
+  const { fetchPosts, submitPost, account, CheckIfWalletConnected, name } = useContext(EtherBuzzContext);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -16,9 +16,18 @@ const PostPage = () => {
   };
 
   const handlePostClick = () => {
-    console.log('Title:', title);
-    console.log('Content:', content);
+    if (title && content){
+      submitPost(title, content);
+      setTitle("");
+      setContent("");
+      //fetchPosts();
+    }
+    else{
+      alert("Please fill in all fields to post"); 
+    }
   };
+
+
 
   return (
     <div className={Style.mainpostpage}>

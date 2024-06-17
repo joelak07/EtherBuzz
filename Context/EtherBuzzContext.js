@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { CheckIfWalletConnected, ConnectWallet, connectingWithContract } from '../Utils/apiFeature';
-
 export const EtherBuzzContext = React.createContext();
 
 export const EtherBuzzProvider = ({ children }) => {
@@ -9,6 +8,7 @@ export const EtherBuzzProvider = ({ children }) => {
     const [userName, setUserName] = useState("");
     const [name, setName] = useState("");
     const [number, setNumber] = useState(0);
+    const { ethers } = require("ethers");
 
     const router = useRouter();
 
@@ -21,11 +21,36 @@ export const EtherBuzzProvider = ({ children }) => {
         }
     };
 
+    const submitPost = async (title, content) => {
+        try {
+            const contract = await connectingWithContract();
+            const gasLimit = ethers.BigNumber.from("500000"); 
+            const tx = await contract.createPost(content, title, { gasLimit });
+            await tx.wait();
+    
+            console.log("Post submitted successfully:", tx);
+        } catch (error) {
+            console.log("Error in submitPost:", error);
+        }
+    };
+
+    const fetchPosts = async () => {
+        try {
+            const contract = await connectingWithContract();
+            const posts = await contract.getAllPosts();
+            console.log("Posts:", posts);
+        } catch (error) {
+            console.log("Error in fetchPosts:", error);
+        }
+    }
+    
+    
+
     const fetchName = async (account) => {
         try {
             const contract = await connectingWithContract();
             const user = await contract.users(account);
-            setName(user.username); // Extract username from user struct
+            setName(user.username); 
         } catch (error) {
             console.log("Error in fetchName:", error);
         }
@@ -51,7 +76,7 @@ export const EtherBuzzProvider = ({ children }) => {
     };
 
     return (
-        <EtherBuzzContext.Provider value={{ createUser, account, number, userName, name, CheckIfWalletConnected }}>
+        <EtherBuzzContext.Provider value={{ fetchPosts, submitPost, createUser, account, number, userName, name, CheckIfWalletConnected }}>
             {children}
         </EtherBuzzContext.Provider>
     );

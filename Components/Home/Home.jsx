@@ -6,9 +6,18 @@ import { EtherBuzzContext } from '../../Context/EtherBuzzContext'
 
 const Home = () => {
 
-  const { CheckIfWalletConnected } = useContext(EtherBuzzContext)
+  const { fetchPosts, CheckIfWalletConnected } = useContext(EtherBuzzContext)
   const [news, setNews] = useState(null);
+  const [posts, setPosts] = useState(null);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchposts=fetchPosts();
+    setPosts(fetchposts);
+    console.log(fetchposts);
+  }, []); 
+
+
 
   useEffect(() => {
     const apiKey = process.env.NEXT_PUBLIC_NEWS_API_KEY;

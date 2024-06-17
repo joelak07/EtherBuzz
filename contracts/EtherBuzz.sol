@@ -6,10 +6,11 @@ contract EtherBuzz {
     struct Post {
         address poster;
         uint256 timestamp;
+        string title;
         string content;
-        address[] likes;
-        uint256 upvotes;
-        uint256 downvotes;
+        // address[] likes;
+        // uint256 upvotes;
+        // uint256 downvotes;
         bytes32 postid;  // Use bytes32 for postid
     }
 
@@ -39,15 +40,16 @@ contract EtherBuzz {
         emit UserCreated(msg.sender, _username);
     }
 
-    function createPost(string memory _content) public userExists(msg.sender) {
+    function createPost(string memory _content,string memory _title) public userExists(msg.sender) {
         bytes32 postid = keccak256(abi.encodePacked(msg.sender, block.timestamp, _content));
         posts.push(Post({
             poster: msg.sender,
             timestamp: block.timestamp,
+            title:_title,
             content: _content,
-            likes: new address ,
-            upvotes: 0,
-            downvotes: 0,
+            //likes: new address ,  // Uncomment and initialize if needed
+            // upvotes: 0,
+            // downvotes: 0,
             postid: postid
         }));
         users[msg.sender].postIds.push(postid);
@@ -62,5 +64,9 @@ contract EtherBuzz {
             usernames[i] = users[userAddresses[i]].username;
         }
         return (addresses, usernames);
+    }
+
+    function getAllPosts() public view returns (Post[] memory) {
+        return posts;
     }
 }

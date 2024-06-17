@@ -9,9 +9,9 @@ export default function App({ Component, pageProps }) {
   <div>
     <EtherBuzzProvider>
       <NavBar />
-      {/* <Home/>
-      <Create /> */}
-      <PostPage />
+      <Home/>
+      {/* <Create /> */}
+      {/* <PostPage /> */}
       <Component {...pageProps} />
     </EtherBuzzProvider>
   </div>)

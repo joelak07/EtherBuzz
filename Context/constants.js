@@ -1,3 +1,3 @@
 import etherBuzzJSON from './EtherBuzz.json';
-export const EtherBuzzAddress="0xb429abA0527bb097128A3EA21C89b57A9A3E412C";
+export const EtherBuzzAddress="0xC3e79F57e1cFe6db32DaA35c3C22e058c6922f57";
 export const EtherBuzzABI = etherBuzzJSON.abi;

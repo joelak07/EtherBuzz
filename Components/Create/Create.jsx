@@ -4,7 +4,7 @@ import { EtherBuzzContext } from '../../Context/EtherBuzzContext';
 import styles from './Create.module.css'; // Assuming you have a CSS module for styling
 
 const Create = () => {
-    const { createuser, account } = useContext(EtherBuzzContext);
+    const { createUser, account } = useContext(EtherBuzzContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,7 +14,7 @@ const Create = () => {
         console.log('Name:', name);
         console.log('Email:', email);
         console.log('Wallet Address:', account);
-        createuser(name,email);
+        createUser(name,email);
     };  
 
     
